@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: test
+
+logging:
+  level:
+    com:
+      isr:
+        test: DEBUG
+
+server:
+  servlet:
+    context-path: /test
