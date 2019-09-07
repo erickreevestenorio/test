@@ -61,4 +61,32 @@ public class LoginRepositoryIntegrationTest {
                 .isNotNull().isNotEmpty();
     }
 
+    @Test
+    public void getUsersWithLoginCountByAttribute1() {
+        assertThat(loginRepository.getUsersWithLoginCount(null,
+                null, "AA0", null, null, null))
+                .isNotNull().isNotEmpty();
+    }
+
+    @Test
+    public void getUsersWithLoginCountByAttribute2() {
+        assertThat(loginRepository.getUsersWithLoginCount(null,
+                null, null, "BB0", null, null))
+                .isNotNull().isNotEmpty();
+    }
+
+    @Test
+    public void getUsersWithLoginCountByAttribute3() {
+        assertThat(loginRepository.getUsersWithLoginCount(null,
+                null, null, null, "CC0", null))
+                .isNotNull().isNotEmpty();
+    }
+
+    @Test
+    public void getUsersWithLoginCountByAttribute4() {
+        assertThat(loginRepository.getUsersWithLoginCount(null,
+                null, null, null, null, "DD0"))
+                .isNotNull().isNotEmpty();
+    }
+
 }

@@ -11,3 +11,4 @@ logging:
 server:
   servlet:
     context-path: /test
+
