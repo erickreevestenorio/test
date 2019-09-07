@@ -5,7 +5,8 @@ ISR Test - RESTful Web Service
 1. Run maven command -> mvn clean package
 2. Run the jar including the dev profile-> java -jar -Dspring.profiles.active=dev test-0.0.1-SNAPSHOT.jar
 
-Access SwaggerUI for API Documentation- http://localhost:8881/test/
+Access the application locally - http://server/test/
+Access the application through heroku - http://ericktenorio.herokuapp.com/test
 
 <b>Endpoints</b>
 
