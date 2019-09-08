@@ -34,10 +34,12 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public List<UserWithLoginCountDTO> getUsersWithLoginCount(LocalDate startDate, LocalDate endDate,
-                                                              String attribute1, String attribute2,
-                                                              String attribute3, String attribute4) {
-        List<UserWithLoginCountDTO> userWithLoginCountDTOList = loginRepository
-                .getUsersWithLoginCount(startDate, endDate, attribute1, attribute2, attribute3, attribute4);
+                                                              List<String> attribute1, List<String> attribute2,
+                                                              List<String> attribute3, List<String> attribute4) {
+        List<UserWithLoginCountDTO> userWithLoginCountDTOList;
+        userWithLoginCountDTOList = loginRepository
+                .getUsersWithLoginCount(startDate, endDate, attribute1, attribute2, attribute3,
+                        attribute4);
         if (userWithLoginCountDTOList.isEmpty()) {
             userWithLoginCountDTOList = null;
         }

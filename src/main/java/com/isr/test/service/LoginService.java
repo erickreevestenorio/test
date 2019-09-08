@@ -1,6 +1,7 @@
 package com.isr.test.service;
 
 import com.isr.test.model.dto.UserWithLoginCountDTO;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -44,6 +45,6 @@ public interface LoginService {
      * @param attribute4 a {@link String} object.
      * @return a List of {@link UserWithLoginCountDTO} object
      */
-    List<UserWithLoginCountDTO> getUsersWithLoginCount(LocalDate startDate, LocalDate endDate, String attribute1,
-                                                       String attribute2, String attribute3, String attribute4);
+    List<UserWithLoginCountDTO> getUsersWithLoginCount(LocalDate startDate, LocalDate endDate, List<String> attribute1,
+                                                       List<String> attribute2, List<String> attribute3, List<String> attribute4);
 }

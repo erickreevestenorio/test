@@ -78,10 +78,10 @@ public class LoginController {
     public ResponseEntity<List<UserWithLoginCountDTO>> getLogins(
             @DateTimeFormat(pattern = "yyyyMMdd") @RequestParam(value = "start", required = false) LocalDate startDate,
             @DateTimeFormat(pattern = "yyyyMMdd") @RequestParam(value = "end", required = false) LocalDate endDate,
-            @RequestParam(value = "attribute1", required = false) String attribute1,
-            @RequestParam(value = "attribute2", required = false) String attribute2,
-            @RequestParam(value = "attribute3", required = false) String attribute3,
-            @RequestParam(value = "attribute4", required = false) String attribute4) {
+            @RequestParam(value = "attribute1", required = false) List<String> attribute1,
+            @RequestParam(value = "attribute2", required = false) List<String> attribute2,
+            @RequestParam(value = "attribute3", required = false) List<String> attribute3,
+            @RequestParam(value = "attribute4", required = false) List<String> attribute4) {
         return new ResponseEntity<>(loginService.getUsersWithLoginCount(startDate, endDate, attribute1, attribute2,
                 attribute3, attribute4), httpHeaders, HttpStatus.OK);
     }

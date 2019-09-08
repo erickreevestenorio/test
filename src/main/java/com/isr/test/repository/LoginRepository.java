@@ -46,23 +46,24 @@ public interface LoginRepository extends JpaRepository<LoginEntity, Long> {
      * All parameters are optional.
      * The values used for the attributes are used as filters
      *
-     * @param startDate  a {@link LocalDate} object.
-     * @param endDate    a {@link LocalDate} object.
-     * @param attribute1 a {@link String} object.
-     * @param attribute2 a {@link String} object.
-     * @param attribute3 a {@link String} object.
-     * @param attribute4 a {@link String} object.
+     * @param startDate      a {@link LocalDate} object.
+     * @param endDate        a {@link LocalDate} object.
+     * @param attribute1List a {@link List<String>} object.
+     * @param attribute2List a {@link List<String>} object.
+     * @param attribute3List a {@link List<String>} object.
+     * @param attribute4List a {@link List<String>} object.
      * @return a List of {@link UserWithLoginCountDTO} object
      */
     @Query(value = "SELECT new com.isr.test.model.dto.UserWithLoginCountDTO(l.user, count(l.user)) from LoginEntity l " +
             "where (:startDate is null or l.loginDate >= :startDate) and (:endDate is null or l.loginDate <= :endDate) " +
-            "and (:attribute1 is null or l.attribute1 = :attribute1) and " +
-            "(:attribute2 is null or l.attribute2 = :attribute2) and (:attribute3 is null or l.attribute3 = :attribute3) " +
-            " and (:attribute4 is null or l.attribute4 = :attribute4) group by l.user")
+            " or (l.attribute1 in (:attribute1) or " +
+            "l.attribute2 in (:attribute2) or " +
+            "l.attribute3 in (:attribute3) or " +
+            "l.attribute4 in (:attribute4)) group by l.user")
     List<UserWithLoginCountDTO> getUsersWithLoginCount(@Param(value = "startDate") LocalDate startDate,
                                                        @Param(value = "endDate") LocalDate endDate,
-                                                       @Param(value = "attribute1") String attribute1,
-                                                       @Param(value = "attribute2") String attribute2,
-                                                       @Param(value = "attribute3") String attribute3,
-                                                       @Param(value = "attribute4") String attribute4);
+                                                       @Param(value = "attribute1") List<String> attribute1List,
+                                                       @Param(value = "attribute2") List<String> attribute2List,
+                                                       @Param(value = "attribute3") List<String> attribute3List,
+                                                       @Param(value = "attribute4") List<String> attribute4List);
 }
