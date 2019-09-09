@@ -17,10 +17,11 @@ Access the application through heroku - http://ericktenorio.herokuapp.com/test
 	
 <b>dates</b>
 Retrieves a JSON array of all the unique dates (ignoring time) in the table The resulting JSON is sorted in ascending.
-* URL /dates
-* Method: GET
-* URL Params Required: None
-* Data Params None
+* URL : /dates
+* Method:  :GET
+* URL Params :
+	Required: None
+* Data Params : None
 * Success Response:
     * Code: 200 
     * Content: { “20190908”, “20190909”}
@@ -31,24 +32,26 @@ Retrieves a JSON array of all the unique dates (ignoring time) in the table The 
 
 <b>users</b>
 * Retrieves a list of user of all the unique users for which there is a login record between the start and end date. Both parameters are optional, so there can be a start date, an end date, or both. The resulted List of user is sorted in ascending order.
-* URL /users
-* Method: GET
-* URL Params Optional: start, end
-* Data Params None
+* URL : /users
+* Method:  GET
+* URL Params :
+	Optional: start, end
+* Data Params : None
 * Success Response:
     * Code: 200 
     * Content: { {“key”:”user”, “value”:”1000”}}
 * Error Response:
     * Code: 404 NOT FOUND 
     * Content: { “” }
-* Sample Call: curl -X GET "http://localhost:8881/test/users?end=20190908&start=20190907" -H "accept: */*"
+* Sample Call:  curl -X GET "http://localhost:8881/test/users?end=20190908&start=20190907" -H "accept: */*"
 
 <b>logins</b>
 * Retrieves a List of {@link UserWithLoginCountDTO} where the key is the user name and the value is the number of times a user logged on between the start and the end date.All parameters are optional. The values used for the attributes are used as filters
-* URL /logins
-* Method: GET
-* URL Params Optional: start, end, attribute1, attribute2, attribute3, attribute4
-* Data Params None
+* URL : /logins
+* Method : GET
+* URL Params : 
+	Optional: start, end, attribute1, attribute2, attribute3, attribute4
+* Data Params : None
 * Success Response:
     * Code: 200 
     * Content: { “user”, ”user0”, “user1”}
