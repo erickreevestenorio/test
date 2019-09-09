@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -41,10 +42,11 @@ public class LoginController {
     @GetMapping(value = "dates")
     public ResponseEntity<List<LocalDate>> getDates() {
         List<LocalDate> localDateList = loginService.findDistinctLoginTimeOrderByLoginTimeAsc();
-        if (localDateList.isEmpty()) {
-            return new ResponseEntity<>(httpHeaders, HttpStatus.NOT_FOUND);
+        Optional<List<LocalDate>> optionalLocalDateList = Optional.ofNullable(localDateList);
+        if (optionalLocalDateList.isPresent()) {
+            return new ResponseEntity<>(optionalLocalDateList.get(), httpHeaders, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(localDateList, httpHeaders, HttpStatus.OK);
+            return new ResponseEntity<>(localDateList, httpHeaders, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -69,11 +71,11 @@ public class LoginController {
             @ApiParam(value = "End Date. The format is yyyyMMdd")
             @DateTimeFormat(pattern = "yyyyMMdd") @RequestParam(value = "end", required = false) LocalDate endDate) {
         List<String> userList = loginService.findDistinctUsersByStartAndEndDateOrderByUserAsc(startDate, endDate);
-        if (userList.isEmpty()) {
-            return new ResponseEntity<>(httpHeaders,
-                    HttpStatus.NOT_FOUND);
+        Optional<List<String>> optionalStringList = Optional.ofNullable(userList);
+        if (optionalStringList.isPresent()) {
+            return new ResponseEntity<>(optionalStringList.get(), httpHeaders, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(userList, httpHeaders, HttpStatus.OK);
+            return new ResponseEntity<>(userList, httpHeaders, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -112,10 +114,11 @@ public class LoginController {
             @RequestParam(value = "attribute4", required = false) List<String> attribute4) {
         List<UserWithLoginCountDTO> userWithLoginCountDTOList = loginService.getUsersWithLoginCount(startDate, endDate,
                 attribute1, attribute2, attribute3, attribute4);
-        if (userWithLoginCountDTOList.isEmpty()) {
-            return new ResponseEntity<>(httpHeaders, HttpStatus.NOT_FOUND);
+        Optional<List<UserWithLoginCountDTO>> optionalUserWithLoginCountDTOS = Optional.ofNullable(userWithLoginCountDTOList);
+        if (optionalUserWithLoginCountDTOS.isPresent()) {
+            return new ResponseEntity<>(optionalUserWithLoginCountDTOS.get(), httpHeaders, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(userWithLoginCountDTOList, httpHeaders, HttpStatus.OK);
+            return new ResponseEntity<>(userWithLoginCountDTOList, httpHeaders, HttpStatus.NOT_FOUND);
         }
     }
 
