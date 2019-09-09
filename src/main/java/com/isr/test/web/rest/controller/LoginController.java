@@ -40,7 +40,12 @@ public class LoginController {
             "The resulted List of LocalDate is sorted in ascending order.")
     @GetMapping(value = "dates")
     public ResponseEntity<List<LocalDate>> getDates() {
-        return new ResponseEntity<>(loginService.findDistinctLoginTimeOrderByLoginTimeAsc(), httpHeaders, HttpStatus.OK);
+        List<LocalDate> localDateList = loginService.findDistinctLoginTimeOrderByLoginTimeAsc();
+        if (localDateList.isEmpty()) {
+            return new ResponseEntity<>(httpHeaders, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(localDateList, httpHeaders, HttpStatus.OK);
+        }
     }
 
     /**
@@ -63,8 +68,13 @@ public class LoginController {
             @DateTimeFormat(pattern = "yyyyMMdd") @RequestParam(value = "start", required = false) LocalDate startDate,
             @ApiParam(value = "End Date. The format is yyyyMMdd")
             @DateTimeFormat(pattern = "yyyyMMdd") @RequestParam(value = "end", required = false) LocalDate endDate) {
-        return new ResponseEntity<>(loginService.findDistinctUsersByStartAndEndDateOrderByUserAsc(startDate, endDate), httpHeaders,
-                HttpStatus.OK);
+        List<String> userList = loginService.findDistinctUsersByStartAndEndDateOrderByUserAsc(startDate, endDate);
+        if (userList.isEmpty()) {
+            return new ResponseEntity<>(httpHeaders,
+                    HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(userList, httpHeaders, HttpStatus.OK);
+        }
     }
 
     /**
@@ -100,8 +110,13 @@ public class LoginController {
             @RequestParam(value = "attribute3", required = false) List<String> attribute3,
             @ApiParam(value = "List of Attribute4")
             @RequestParam(value = "attribute4", required = false) List<String> attribute4) {
-        return new ResponseEntity<>(loginService.getUsersWithLoginCount(startDate, endDate, attribute1, attribute2,
-                attribute3, attribute4), httpHeaders, HttpStatus.OK);
+        List<UserWithLoginCountDTO> userWithLoginCountDTOList = loginService.getUsersWithLoginCount(startDate, endDate,
+                attribute1, attribute2, attribute3, attribute4);
+        if (userWithLoginCountDTOList.isEmpty()) {
+            return new ResponseEntity<>(httpHeaders, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(userWithLoginCountDTOList, httpHeaders, HttpStatus.OK);
+        }
     }
 
 }
