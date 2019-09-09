@@ -16,7 +16,7 @@ Access the application through heroku - http://ericktenorio.herokuapp.com/test
 <b>Endpoints</b>
 	
 <b>dates</b>
-Retrieves a JSON array of all the unique dates (ignoring time) in the table The resulting JSON is sorted in ascending.
+* Retrieves a JSON array of all the unique dates (ignoring time) in the table The resulting JSON is sorted in ascending.
 * URL : /dates
 * Method  :GET
 * URL Params :
@@ -45,7 +45,8 @@ Retrieves a JSON array of all the unique dates (ignoring time) in the table The 
     * Content: { “” }
 * Sample Call:  curl -X GET "http://localhost:8881/test/users?end=20190908&start=20190907" -H "accept: */*"
 
-<b>logins</b> Retrieves a List of {@link UserWithLoginCountDTO} where the key is the user name and the value is the number of times a user logged on between the start and the end date.All parameters are optional. The values used for the attributes are used as filters
+<b>logins</b> 
+* Retrieves a List of {@link UserWithLoginCountDTO} where the key is the user name and the value is the number of times a user logged on between the start and the end date.All parameters are optional. The values used for the attributes are used as filters
 * URL : /logins
 * Method : GET
 * URL Params : 
