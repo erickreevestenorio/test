@@ -56,10 +56,10 @@ public interface LoginRepository extends JpaRepository<LoginEntity, Long> {
      */
     @Query(value = "SELECT new com.isr.test.model.dto.UserWithLoginCountDTO(l.user, count(l.user)) from LoginEntity l " +
             "where (:startDate is null or l.loginDate >= :startDate) and (:endDate is null or l.loginDate <= :endDate) " +
-            " or (l.attribute1 in (:attribute1) or " +
-            "l.attribute2 in (:attribute2) or " +
-            "l.attribute3 in (:attribute3) or " +
-            "l.attribute4 in (:attribute4)) group by l.user")
+            " and ((:attribute1) is null or l.attribute1 in (:attribute1)) and" +
+            "((:attribute2) is null or l.attribute2 in (:attribute2)) and " +
+            "((:attribute3) is null or l.attribute3 in (:attribute3)) and " +
+            "((:attribute4) is null or l.attribute4 in (:attribute4)) group by l.user")
     List<UserWithLoginCountDTO> getUsersWithLoginCount(@Param(value = "startDate") LocalDate startDate,
                                                        @Param(value = "endDate") LocalDate endDate,
                                                        @Param(value = "attribute1") List<String> attribute1List,
