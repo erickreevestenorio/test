@@ -20,7 +20,7 @@ Retrieves a JSON array of all the unique dates (ignoring time) in the table The 
 * URL : /dates
 * Method  :GET
 * URL Params :
-	Required: None
+	* Required: None
 * Data Params : None
 * Success Response:
     * Code: 200 
@@ -35,7 +35,7 @@ Retrieves a JSON array of all the unique dates (ignoring time) in the table The 
 * URL : /users
 * Method:  GET
 * URL Params :
-	Optional: start, end
+	* Optional: start, end
 * Data Params : None
 * Success Response:
     * Code: 200 
@@ -50,7 +50,7 @@ Retrieves a JSON array of all the unique dates (ignoring time) in the table The 
 * URL : /logins
 * Method : GET
 * URL Params : 
-	Optional: start, end, attribute1, attribute2, attribute3, attribute4
+	* Optional: start, end, attribute1, attribute2, attribute3, attribute4
 * Data Params : None
 * Success Response:
     * Code: 200 
