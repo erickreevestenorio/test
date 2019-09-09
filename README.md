@@ -6,6 +6,7 @@ ISR Test - RESTful Web Service
 2. Run the jar including the dev profile -> <b>java -jar -Dspring.profiles.active=dev test-0.0.1-SNAPSHOT.jar</b>
 
 Access the application locally - http://localhost:8881/test
+
 Access the application through heroku - http://ericktenorio.herokuapp.com/test
 	1. API Documentation, access or click SwaggerUI
 	2. H2 Console, access or click H2 Console
