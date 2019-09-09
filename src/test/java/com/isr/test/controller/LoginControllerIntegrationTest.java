@@ -65,8 +65,8 @@ public class LoginControllerIntegrationTest {
 
     @Test
     public void getLogins_hasBody() throws IOException {
-        ResponseEntity<String> response = testRestTemplate.getForEntity("/logins?start=20180908&end=20190908" +
-                "&attribute1=AA0&attribute2=AA1&attribute3=AA3&attribute4=AA4", String.class);
+        ResponseEntity<String> response = testRestTemplate.getForEntity("/logins?start=20180908&end=20190909" +
+                "&attribute1=AA0&attribute2=BB0&attribute3=CC0&attribute4=DD0", String.class);
         assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
         assertEquals(true, response.hasBody());
         assertEquals(HttpStatus.OK.value(), response.getStatusCode().value(), "Incorrect Response Status");
