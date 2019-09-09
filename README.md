@@ -18,7 +18,7 @@ Access the application through heroku - http://ericktenorio.herokuapp.com/test
 <b>dates</b>
 Retrieves a JSON array of all the unique dates (ignoring time) in the table The resulting JSON is sorted in ascending.
 * URL : /dates
-* Method:  :GET
+* Method  :GET
 * URL Params :
 	Required: None
 * Data Params : None
