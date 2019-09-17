@@ -17,8 +17,8 @@ public interface LoginRepository extends JpaRepository<LoginEntity, Long> {
      * Retrieves a List of LocalDate array of all the unique dates (ignoring time) in the table
      * The resulted List of LocalDate is sorted in ascending order.
      */
-    @Query(value = "select distinct l.loginDate from LoginEntity l order by l.loginDate asc ")
-    List<LocalDate> findDistinctLoginTimeOrderByLoginTimeAsc();
+    @Query(value = "select distinct (to_char(l.login_time, 'yyyy-MM-dd')) as date from login l order by date asc ", nativeQuery = true)
+    List<String> findDistinctLoginTimeOrderByLoginTimeAsc();
 
     /**
      * {@inheritDoc}
@@ -32,8 +32,8 @@ public interface LoginRepository extends JpaRepository<LoginEntity, Long> {
      * @return the List of users.
      */
     @Query(
-            value = "select distinct l.user from LoginEntity l where (:startDate is null or l.loginDate >= :startDate) " +
-                    "and (:endDate is null or l.loginDate <= :endDate) group by l.user order by l.user asc ")
+            value = "select distinct l.user from LoginEntity l where (:startDate is null or to_char(l.loginTime, 'yyyy-MM-dd') >= :startDate) " +
+                    "and (:endDate is null or to_char(l.loginTime, 'yyyy-MM-dd') <= :endDate) group by l.user order by l.user asc ")
     List<String> findDistinctUsersByStartAndEndDateOrderByUserAsc(@Param(value = "startDate") LocalDate startDate,
                                                                   @Param(value = "endDate") LocalDate endDate);
 
@@ -55,7 +55,7 @@ public interface LoginRepository extends JpaRepository<LoginEntity, Long> {
      * @return a List of {@link UserWithLoginCountDTO} object
      */
     @Query(value = "SELECT new com.isr.test.model.dto.UserWithLoginCountDTO(l.user, count(l.user)) from LoginEntity l " +
-            "where (:startDate is null or l.loginDate >= :startDate) and (:endDate is null or l.loginDate <= :endDate) " +
+            "where (:startDate is null or to_char(l.loginTime, 'yyyy-MM-dd') >= :startDate) and (:endDate is null or to_char(l.loginTime, 'yyyy-MM-dd') <= :endDate) " +
             " and ((:attribute1) is null or l.attribute1 in (:attribute1)) and" +
             "((:attribute2) is null or l.attribute2 in (:attribute2)) and " +
             "((:attribute3) is null or l.attribute3 in (:attribute3)) and " +

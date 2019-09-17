@@ -19,7 +19,7 @@ public class LoginServiceImpl implements LoginService {
     private final LoginRepository loginRepository;
 
     @Override
-    public List<LocalDate> findDistinctLoginTimeOrderByLoginTimeAsc() {
+    public List<String> findDistinctLoginTimeOrderByLoginTimeAsc() {
         return loginRepository.findDistinctLoginTimeOrderByLoginTimeAsc();
     }
 

@@ -14,7 +14,7 @@ public interface LoginService {
      * Retrieves a List of LocalDate array of all the unique dates (ignoring time) in the table
      * The resulted List of LocalDate is sorted in ascending order.
      */
-    List<LocalDate> findDistinctLoginTimeOrderByLoginTimeAsc();
+    List<String> findDistinctLoginTimeOrderByLoginTimeAsc();
 
     /**
      * {@inheritDoc}

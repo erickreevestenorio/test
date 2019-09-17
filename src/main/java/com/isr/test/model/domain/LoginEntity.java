@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "login", indexes = {
-        @Index(name = "IDX_MYIDX1", columnList = "login_time,login_date, user")
+        @Index(name = "IDX_MYIDX1", columnList = "login_time, user")
 })
 public class LoginEntity {
 
@@ -23,8 +23,6 @@ public class LoginEntity {
     private Long id;
     @Column(name = "login_time")
     private LocalDateTime loginTime;
-    @Column(name = "login_date")
-    private LocalDate loginDate;
     @Column(name = "user")
     private String user;
     @Column(name = "attribute1")

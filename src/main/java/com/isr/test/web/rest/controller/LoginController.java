@@ -40,9 +40,9 @@ public class LoginController {
     @ApiOperation(value = "Retrieves a List of LocalDate array of all the unique dates (ignoring time) in the table." +
             "The resulted List of LocalDate is sorted in ascending order.")
     @GetMapping(value = "dates")
-    public ResponseEntity<List<LocalDate>> getDates() {
-        List<LocalDate> localDateList = loginService.findDistinctLoginTimeOrderByLoginTimeAsc();
-        Optional<List<LocalDate>> optionalLocalDateList = Optional.ofNullable(localDateList);
+    public ResponseEntity<List<String>> getDates() {
+        List<String> localDateList = loginService.findDistinctLoginTimeOrderByLoginTimeAsc();
+        Optional<List<String>> optionalLocalDateList = Optional.ofNullable(localDateList);
         if (optionalLocalDateList.isPresent()) {
             return new ResponseEntity<>(optionalLocalDateList.get(), httpHeaders, HttpStatus.OK);
         } else {

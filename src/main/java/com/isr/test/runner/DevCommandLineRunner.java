@@ -38,7 +38,6 @@ public class DevCommandLineRunner implements CommandLineRunner {
             loginEntity.setAttribute3("CC" + count);
             loginEntity.setAttribute4("DD" + count);
             loginEntity.setLoginTime(LocalDateTime.now().minusHours(Long.parseLong(String.valueOf(count))));
-            loginEntity.setLoginDate(loginEntity.getLoginTime().toLocalDate());
             loginRepository.save(loginEntity);
             count++;
         }
